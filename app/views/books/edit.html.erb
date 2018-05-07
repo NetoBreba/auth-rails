@@ -1,0 +1,46 @@
+<% content_for :assets do %>
+    <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.4/combined/js/gijgo.min.js" type="text/javascript"></script>
+	<link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.4/combined/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+<% end %>
+
+<% content_for :conteudo do %>
+    <div class="row mg-top">
+        <div class="col-md-6 offset-md-3">
+                <%= form_with(model: @book, local: true) do |form| %>
+                        <div class="form-group">
+                            <label for="title">Book Title</label>
+                            <%= form.text_field :title, :class => "form-control", "placeholder"=>"book title", "id"=>"title"%>
+                        </div>
+                
+                        <div class="form-group">
+                            <label for="author">Author</label>
+                            <%= form.text_field :author, :class => "form-control", "placeholder"=>"book author", "id"=>"author"%>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="publish-date">Publish Date</label>
+                            <%= form.text_field :publishDate, :class => "form-control", "id"=>"publish-date"%>
+                        </div>
+                
+                        <div class="form-group">
+                            <label for="edition">Edition</label>
+                            <%= form.text_field :edition, :class => "form-control", "placeholder"=>"book edition", "id"=>"edition"%>
+                        </div>
+
+                        <%= form.submit "Update", :class => "btn btn-success btn-block" %>
+                        <%= link_to  "Back", books_path, :class => "btn btn-info btn-block" %>
+                <% end %>
+        </div>
+    </div> 
+<% end %>
+
+<% content_for :assetsDown do %>
+    <script>
+        $('#publish-date').datepicker({
+            uiLibrary: 'bootstrap4',
+            dateFormat: "yy-mm-dd"
+        });
+    </script>
+<% end %>
+
+<%= render template: "layouts/application" %>
